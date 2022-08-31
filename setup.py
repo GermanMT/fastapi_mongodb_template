@@ -6,10 +6,10 @@ with open('README.md', 'r') as fh:
 
 setup(
     name = 'depex',
-    version = '0.0.2',
+    version = '0.0.6',
     author = 'Antonio Germán Márquez Trujillo',
     author_email = 'amtrujillo@us.es',
-    description = 'Una herramienta para el análisis de vulnerabilidades en proyectos software open-source',
+    description = 'Template using FastAPI and MongoDB',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/GermanMT/depex',
@@ -29,8 +29,6 @@ setup(
         'python-dotenv==0.20.0',
         'requests==2.28.1'
         'types-requests==2.28.8',
-        'types-setuptools==63.4.0',
-        'python-dateutil==2.8.2',
-        'types-python-dateutil==2.8.19'
+        'types-setuptools==63.4.0'
     ]
 )
