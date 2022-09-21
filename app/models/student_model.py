@@ -23,6 +23,6 @@ class StudentModel(BaseModel):
                 'name': 'John',
                 'surname': 'Doe',
                 'age': 24,
-                'phone': '678340253'
+                'phone': '+34 678 340 253'
             }
         }
