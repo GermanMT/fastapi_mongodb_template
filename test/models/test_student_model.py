@@ -1,8 +1,9 @@
 import mongomock
 
+from app.models.student_model import StudentModel
 
 def test_insert_user():
-    student = {
+    student: StudentModel = {
         'name': 'John',
         'surname': 'Doe',
         'age': 24,

@@ -4,10 +4,15 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
+import pytest
+
 
 client = TestClient(app)
 
-def test_create_student(mongo_mock):
+@pytest.mark.asyncio
+async def test_create_student(mongo_mock):
+    await mongo_mock
+
     student_data = {
         'name': 'John',
         'surname': 'Doe',
@@ -27,7 +32,10 @@ def test_create_student(mongo_mock):
     assert inserted_student['age'] == student_data['age']
     assert inserted_student['phone'] == student_data['phone']
 
-def test_read_student(mongo_mock):
+@pytest.mark.asyncio
+async def test_read_student(mongo_mock):
+    await mongo_mock
+
     response = client.get('/student/6329cd902186c0e6c5fa5eef')
     assert response.status_code == 200
     readed_student = loads(response.json())
@@ -36,7 +44,10 @@ def test_read_student(mongo_mock):
     assert readed_student['age'] == 38
     assert readed_student['phone'] == '+34 678 340 253'
 
-def test_update_student(mongo_mock):
+@pytest.mark.asyncio
+async def test_update_student(mongo_mock):
+    await mongo_mock
+
     updated_student_data = {
         "name": "Myke",
         "surname": "Fernandez",
@@ -47,7 +58,10 @@ def test_update_student(mongo_mock):
     assert response.status_code == 200
     assert response.json()['message'] == 'Student with id 6329cd902186c0e6c5fa5eef updated successfully'
 
-def test_delete_employee(mongo_mock):
+@pytest.mark.asyncio
+async def test_delete_employee(mongo_mock):
+    await mongo_mock
+
     response = client.delete('/student/6329cd902186c0e6c5fa5eef')
     assert response.status_code == 200
     assert response.json()['message'] == 'Student with id 6329cd902186c0e6c5fa5eef deleted successfully'
