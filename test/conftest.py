@@ -18,7 +18,7 @@ async def mongo_mock(monkeypatch):
         'name': 'Myke',
         'surname': 'Fernandez',
         'age': 38,
-        'phone': '+34 678 340 253'
+        'phone': '678 340 253'
     }
 
     await collection.insert_one(student_data)
