@@ -6,6 +6,8 @@ from starlette.responses import JSONResponse
 
 from app.router import api_router
 
+from app.utils.json_encoder import JSONEncoder
+
 from json import loads
 
 app = FastAPI()
@@ -18,7 +20,7 @@ async def validation_exception_handler(_ , exc):
     for error in exc_json:
         response['message'].append(error['loc'][-1]+f": {error['msg']}")
     
-    return JSONResponse(response, status_code = 422)
+    return JSONResponse(content = JSONEncoder().encode(response), status_code = 422)
 
 # Set all CORS enabled origins
 app.add_middleware(
