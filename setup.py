@@ -30,5 +30,12 @@ setup(
         'requests==2.28.1'
         'types-requests==2.28.8',
         'types-setuptools==63.4.0'
+    ],
+    tests_require=[
+        'pytest==7.1.3',
+        'pytest-asyncio==0.19.0',
+        'mongomock-motor==0.0.12',
+        'prospector[with_everything]==1.7.7',
+        'mypy==0.971'
     ]
 )
