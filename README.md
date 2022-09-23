@@ -1,4 +1,4 @@
-# Depex Template
+# FastAPI and MongoDB Template
 
 ## Deployment with docker
 

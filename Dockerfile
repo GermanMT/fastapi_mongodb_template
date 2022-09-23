@@ -1,14 +1,14 @@
 FROM python:3.10
 
-WORKDIR /depex
+WORKDIR /fastapi_mongodb_template
 
-COPY ./requirements.txt /depex/requirements.txt
+COPY ./requirements.txt /fastapi_mongodb_template/requirements.txt
 
 RUN python -m pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-COPY ./ /depex/
+COPY ./ /fastapi_mongodb_template/
 
 EXPOSE 8000
 

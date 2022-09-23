@@ -2,14 +2,14 @@ version: '3'
 
 services:
   backend:
-    container_name: depex_backend
+    container_name: fastapi_mongodb_backend
     build: .
     depends_on:
       - database
     ports:
       - '8000:8000'
     networks:
-      - depex
+      - fastapi_mongodb
 
   database:
     container_name: mongodb
@@ -17,10 +17,10 @@ services:
     ports:
       - '27017:27017'
     networks:
-      - depex
+      - fastapi_mongodb
 
 networks:
-  depex:
+  fastapi_mongodb:
     driver: bridge
 
 volumes:
