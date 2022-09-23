@@ -1,5 +1,15 @@
 # FastAPI and MongoDB Template
 
+## Documentation
+
+Related documentation and links about this template.
+
+[DockerHub](https://hub.docker.com/repository/docker/germanmt/fastapi_mongodb_template)
+
+[FastAPI](https://fastapi.tiangolo.com/)
+
+[Pydantic](https://pydantic-docs.helpmanual.io/)
+
 ## Deployment with docker
 
 1. Create a .env file from template.env
