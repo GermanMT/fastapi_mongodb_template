@@ -10,7 +10,26 @@ from app.utils.json_encoder import JSONEncoder
 
 from json import loads
 
-app = FastAPI()
+description = '''
+A simple template for python projects using FastAPI and MongoDB
+
+## Documentation
+
+[FastAPI](https://fastapi.tiangolo.com/)
+
+[Pydantic](https://pydantic-docs.helpmanual.io/)
+'''
+
+app = FastAPI(
+    title = "FastAPI/MongoDB Template",
+    description = description,
+    version = "1.0.0",
+    contact = {
+        "name": "Antonio Germán Márquez Trujillo",
+        "url": "https://github.com/GermanMT",
+        "email": "amtrujillo@us.es",
+    }
+)
 
 @app.exception_handler(RequestValidationError)
 @app.exception_handler(ValidationError)
