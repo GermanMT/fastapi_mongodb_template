@@ -19,10 +19,7 @@ setup(
     python_requires = '>=3.10',
     install_requires = [
         'wheel==0.37.1',
-        'uvicorn==0.18.2',
-        'fastapi==0.79.0',
-        'email-validator==1.3.0',
-        'pymongo==4.2.0',
+        'fastapi[all]==0.79.0',
         'motor==3.0.0',
         'motor-stubs==1.7.1',
         'python-dotenv==0.20.0',
