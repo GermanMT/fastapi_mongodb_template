@@ -6,6 +6,8 @@ from starlette.responses import JSONResponse
 
 from app.router import api_router
 
+from app.services.populate_service import students_bulkwrite
+
 from app.utils.json_encoder import JSONEncoder
 
 from json import loads
@@ -40,6 +42,10 @@ async def validation_exception_handler(_ , exc):
         response['message'].append(error['loc'][-1]+f": {error['msg']}")
     
     return JSONResponse(content = JSONEncoder().encode(response), status_code = 422)
+
+@app.on_event("startup")
+async def startup_event():
+    await students_bulkwrite()
 
 # Set all CORS enabled origins
 app.add_middleware(

@@ -5,6 +5,6 @@ from app.config import settings
 
 client = AsyncIOMotorClient(settings.DATABASE_URL)
 
-db = client.depex
+db = client.students
 
 student_collection = db.get_collection('students')
