@@ -159,7 +159,7 @@ async def test_update_student(mongo_mock: Any) -> None:
         "age": 20,
         "phone": "678 340 253"
     }
-    response = client.put('/student/6329cd902186c0e6c5fa5eef', data=dumps(updated_student_data))
+    response = client.put('/student/6329cd902186c0e6c5fa5eef', content=dumps(updated_student_data))
     assert response.status_code == 200
     json_response = response.json()
     assert (
@@ -177,7 +177,7 @@ async def test_update_student_not_found(mongo_mock: Any) -> None:
         "age": 20,
         "phone": "678 340 253"
     }
-    response = client.put('/student/632c2636db39c267a803f1ed', data=dumps(updated_student_data))
+    response = client.put('/student/632c2636db39c267a803f1ed', content=dumps(updated_student_data))
     assert response.status_code == 404
     error = response.json()
     assert error['message'][0] == 'Student with id 632c2636db39c267a803f1ed not found'
