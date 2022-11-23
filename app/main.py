@@ -1,6 +1,6 @@
 from json import loads
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError, ValidationError
 
 from starlette.middleware.cors import CORSMiddleware
@@ -36,9 +36,12 @@ app = FastAPI(
 
 @app.exception_handler(RequestValidationError)
 @app.exception_handler(ValidationError)
-async def validation_exception_handler(_, exc):
+async def validation_exception_handler(
+    _: Request,
+    exc: ValidationError | RequestValidationError
+) -> JSONResponse:
     exc_json = loads(exc.json())
-    response = {'message': []}
+    response: dict[str, list[str]] = {'message': []}
     for error in exc_json:
         response['message'].append(error['loc'][-1] + f": {error['msg']}")
 
@@ -46,7 +49,7 @@ async def validation_exception_handler(_, exc):
 
 
 @app.on_event("startup")
-async def startup_event():
+async def startup_event() -> None:
     await students_bulkwrite()
 
 

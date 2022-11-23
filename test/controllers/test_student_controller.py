@@ -1,5 +1,7 @@
 from json import loads, dumps
 
+from typing import Any
+
 from fastapi.testclient import TestClient
 
 import pytest
@@ -11,7 +13,7 @@ client = TestClient(app)
 
 
 @pytest.mark.asyncio
-async def test_create_student_ok(mongo_mock):
+async def test_create_student_ok(mongo_mock: Any) -> None:
     await mongo_mock
 
     student_data = {
@@ -35,7 +37,7 @@ async def test_create_student_ok(mongo_mock):
 
 
 @pytest.mark.asyncio
-async def test_create_student_empty_name_surname(mongo_mock):
+async def test_create_student_empty_name_surname(mongo_mock: Any) -> None:
     await mongo_mock
 
     student_data = {
@@ -58,7 +60,7 @@ async def test_create_student_empty_name_surname(mongo_mock):
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize('age', (1, 50, 100))
-async def test_create_student_ok_age(mongo_mock, age):
+async def test_create_student_ok_age(mongo_mock: Any, age: int) -> None:
     await mongo_mock
 
     student_data = {
@@ -83,7 +85,7 @@ async def test_create_student_ok_age(mongo_mock, age):
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize('age', (-50, -1, 0))
-async def test_create_student_bad_age(mongo_mock, age):
+async def test_create_student_bad_age(mongo_mock: Any, age: int) -> None:
     await mongo_mock
 
     student_data = {
@@ -104,7 +106,7 @@ async def test_create_student_bad_age(mongo_mock, age):
 
 
 @pytest.mark.asyncio
-async def test_create_student_bad_phone(mongo_mock):
+async def test_create_student_bad_phone(mongo_mock: Any) -> None:
     await mongo_mock
 
     student_data = {
@@ -125,7 +127,7 @@ async def test_create_student_bad_phone(mongo_mock):
 
 
 @pytest.mark.asyncio
-async def test_read_student(mongo_mock):
+async def test_read_student(mongo_mock: Any) -> None:
     await mongo_mock
 
     response = client.get('/student/6329cd902186c0e6c5fa5eef')
@@ -138,7 +140,7 @@ async def test_read_student(mongo_mock):
 
 
 @pytest.mark.asyncio
-async def test_read_student_not_found(mongo_mock):
+async def test_read_student_not_found(mongo_mock: Any) -> None:
     await mongo_mock
 
     response = client.get('/student/632c2636db39c267a803f1ed')
@@ -148,7 +150,7 @@ async def test_read_student_not_found(mongo_mock):
 
 
 @pytest.mark.asyncio
-async def test_update_student(mongo_mock):
+async def test_update_student(mongo_mock: Any) -> None:
     await mongo_mock
 
     updated_student_data = {
@@ -159,12 +161,14 @@ async def test_update_student(mongo_mock):
     }
     response = client.put('/student/6329cd902186c0e6c5fa5eef', data=dumps(updated_student_data))
     assert response.status_code == 200
-    response = loads(response.json())
-    assert response['message'] == 'Student with id 6329cd902186c0e6c5fa5eef updated successfully'
+    json_response = loads(response.json())
+    assert (
+        json_response['message'] == 'Student with id 6329cd902186c0e6c5fa5eef updated successfully'
+    )
 
 
 @pytest.mark.asyncio
-async def test_update_student_not_found(mongo_mock):
+async def test_update_student_not_found(mongo_mock: Any) -> None:
     await mongo_mock
 
     updated_student_data = {
@@ -180,17 +184,19 @@ async def test_update_student_not_found(mongo_mock):
 
 
 @pytest.mark.asyncio
-async def test_delete_employee(mongo_mock):
+async def test_delete_employee(mongo_mock: Any) -> None:
     await mongo_mock
 
     response = client.delete('/student/6329cd902186c0e6c5fa5eef')
     assert response.status_code == 200
-    response = loads(response.json())
-    assert response['message'] == 'Student with id 6329cd902186c0e6c5fa5eef deleted successfully'
+    json_response = loads(response.json())
+    assert (
+        json_response['message'] == 'Student with id 6329cd902186c0e6c5fa5eef deleted successfully'
+    )
 
 
 @pytest.mark.asyncio
-async def test_delete_employee_not_found(mongo_mock):
+async def test_delete_employee_not_found(mongo_mock: Any) -> None:
     await mongo_mock
 
     response = client.delete('/student/632c2636db39c267a803f1ed')

@@ -14,7 +14,7 @@ class StudentModel(BaseModel):
     phone: str | None = Field(...)
 
     @validator("phone")
-    def phone_validation(self, phone):
+    def phone_validation(cls, phone: str) -> ValueError | str:
         if not match(r'[\d]{3} [\d]{3} [\d]{3}', phone):
             raise ValueError(f"The phone {phone} is not correct")
         return phone

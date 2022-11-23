@@ -1,19 +1,19 @@
+from typing import Any
+
 import pytest
 
 from mongomock_motor import AsyncMongoMockClient
 
 from bson import ObjectId
 
-from app.models.student_model import StudentModel
-
 
 @pytest.fixture()
-async def mongo_mock(monkeypatch):
+async def mongo_mock(monkeypatch: Any) -> None:
     client = AsyncMongoMockClient()
     database = client.get_database('TestStudentDB')
     collection = database.get_collection('students')
 
-    student_data: StudentModel = {
+    student_data: dict[str, Any] = {
         '_id': ObjectId('6329cd902186c0e6c5fa5eef'),
         'name': 'Myke',
         'surname': 'Fernandez',

@@ -4,8 +4,13 @@ doc-warnings: false
 
 pylint:
   disable:
+    - no-self-argument
     - super-init-not-called
     - unsubscriptable-object
+
+pycodestyle:
+  disable:
+    - N805
 
 mccabe:
   run: true

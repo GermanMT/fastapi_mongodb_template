@@ -18,7 +18,7 @@ router = APIRouter()
 
 
 @router.post('/student', response_description='Create student', response_model=StudentModel)
-async def create_student_data(student: StudentModel = Body(...)):
+async def create_student_data(student: StudentModel = Body(...)) -> JSONResponse:
     student_json = jsonable_encoder(student)
     try:
         new_student = await create_student(student_json)
@@ -38,7 +38,7 @@ async def create_student_data(student: StudentModel = Body(...)):
     response_description='Read student',
     response_model=StudentModel
 )
-async def read_student_data(student_id: str):
+async def read_student_data(student_id: str) -> JSONResponse:
     try:
         student = await read_student(student_id)
         return JSONResponse(
@@ -57,7 +57,7 @@ async def read_student_data(student_id: str):
     response_description='Update student',
     response_model=dict[str, str]
 )
-async def update_student_data(student_id: str, student: StudentModel = Body(...)):
+async def update_student_data(student_id: str, student: StudentModel = Body(...)) -> JSONResponse:
     student_json = jsonable_encoder(student)
     try:
         await update_student(student_id, student_json)
@@ -79,7 +79,7 @@ async def update_student_data(student_id: str, student: StudentModel = Body(...)
     response_description='Delete student',
     response_model=dict[str, str]
 )
-async def delete_student_data(student_id: str):
+async def delete_student_data(student_id: str) -> JSONResponse:
     try:
         await delete_student(student_id)
         return JSONResponse(
