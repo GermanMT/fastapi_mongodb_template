@@ -1,6 +1,6 @@
-from bson import ObjectId
-
 import json
+
+from bson import ObjectId
 
 
 class JSONEncoder(json.JSONEncoder):

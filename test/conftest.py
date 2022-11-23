@@ -10,8 +10,8 @@ from app.models.student_model import StudentModel
 @pytest.fixture()
 async def mongo_mock(monkeypatch):
     client = AsyncMongoMockClient()
-    db = client.get_database('TestStudentDB')
-    collection = db.get_collection('students')
+    database = client.get_database('TestStudentDB')
+    collection = database.get_collection('students')
 
     student_data: StudentModel = {
         '_id': ObjectId('6329cd902186c0e6c5fa5eef'),
