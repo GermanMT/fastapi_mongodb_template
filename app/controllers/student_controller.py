@@ -11,7 +11,7 @@ from app.services.student_service import (
     delete_student
 )
 
-from app.utils.json_encoder import JSONEncoder
+from app.utils.json_encoder import json_encoder
 
 
 router = APIRouter()
@@ -24,13 +24,12 @@ async def create_student_data(student: StudentModel = Body(...)) -> JSONResponse
         new_student = await create_student(student_json)
         return JSONResponse(
             status_code=status.HTTP_201_CREATED,
-            content=JSONEncoder().encode(new_student)
+            content=json_encoder(new_student)
         )
     except HTTPException as error:
         return JSONResponse(
             status_code=error.status_code,
-            content=JSONEncoder().encode({'message': error.detail})
-        )
+            content=json_encoder({'message': error.detail}))
 
 
 @router.get(
@@ -43,12 +42,12 @@ async def read_student_data(student_id: str) -> JSONResponse:
         student = await read_student(student_id)
         return JSONResponse(
             status_code=status.HTTP_200_OK,
-            content=JSONEncoder().encode(student)
+            content=json_encoder(student)
         )
     except HTTPException as error:
         return JSONResponse(
             status_code=error.status_code,
-            content=JSONEncoder().encode({'message': error.detail})
+            content=json_encoder({'message': error.detail})
         )
 
 
@@ -63,14 +62,14 @@ async def update_student_data(student_id: str, student: StudentModel = Body(...)
         await update_student(student_id, student_json)
         return JSONResponse(
             status_code=status.HTTP_200_OK,
-            content=JSONEncoder().encode(
+            content=json_encoder(
                 {'message': f'Student with id {student_id} updated successfully'}
             )
         )
     except HTTPException as error:
         return JSONResponse(
             status_code=error.status_code,
-            content=JSONEncoder().encode({'message': error.detail})
+            content=json_encoder({'message': error.detail})
         )
 
 
@@ -84,12 +83,12 @@ async def delete_student_data(student_id: str) -> JSONResponse:
         await delete_student(student_id)
         return JSONResponse(
             status_code=status.HTTP_200_OK,
-            content=JSONEncoder().encode(
+            content=json_encoder(
                 {'message': f'Student with id {student_id} deleted successfully'}
             )
         )
     except HTTPException as error:
         return JSONResponse(
             status_code=error.status_code,
-            content=JSONEncoder().encode({'message': error.detail})
+            content=json_encoder({'message': error.detail})
         )
