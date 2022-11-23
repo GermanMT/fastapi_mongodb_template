@@ -1,4 +1,4 @@
-from json import loads, dumps
+from json import dumps
 
 from typing import Any
 
@@ -29,7 +29,7 @@ async def test_create_student_ok(mongo_mock: Any) -> None:
     )
 
     assert response.status_code == 201
-    inserted_student = loads(response.json())
+    inserted_student = response.json()
     assert inserted_student['name'] == student_data['name']
     assert inserted_student['surname'] == student_data['surname']
     assert inserted_student['age'] == student_data['age']
@@ -53,7 +53,7 @@ async def test_create_student_empty_name_surname(mongo_mock: Any) -> None:
     )
 
     assert response.status_code == 422
-    error = loads(response.json())
+    error = response.json()
     assert error['message'][0] == 'name: ensure this value has at least 1 characters'
     assert error['message'][1] == 'surname: ensure this value has at least 1 characters'
 
@@ -76,7 +76,7 @@ async def test_create_student_ok_age(mongo_mock: Any, age: int) -> None:
     )
 
     assert response.status_code == 201
-    inserted_student = loads(response.json())
+    inserted_student = response.json()
     assert inserted_student['name'] == student_data['name']
     assert inserted_student['surname'] == student_data['surname']
     assert inserted_student['age'] == student_data['age']
@@ -101,7 +101,7 @@ async def test_create_student_bad_age(mongo_mock: Any, age: int) -> None:
     )
 
     assert response.status_code == 422
-    error = loads(response.json())
+    error = response.json()
     assert error['message'][0] == 'age: ensure this value is greater than 0'
 
 
@@ -122,7 +122,7 @@ async def test_create_student_bad_phone(mongo_mock: Any) -> None:
     )
 
     assert response.status_code == 422
-    error = loads(response.json())
+    error = response.json()
     assert error['message'][0] == 'phone: The phone 619 asd 721 is not correct'
 
 
@@ -132,7 +132,7 @@ async def test_read_student(mongo_mock: Any) -> None:
 
     response = client.get('/student/6329cd902186c0e6c5fa5eef')
     assert response.status_code == 200
-    readed_student = loads(response.json())
+    readed_student = response.json()
     assert readed_student['name'] == 'Myke'
     assert readed_student['surname'] == 'Fernandez'
     assert readed_student['age'] == 38
@@ -145,7 +145,7 @@ async def test_read_student_not_found(mongo_mock: Any) -> None:
 
     response = client.get('/student/632c2636db39c267a803f1ed')
     assert response.status_code == 404
-    error = loads(response.json())
+    error = response.json()
     assert error['message'][0] == 'Student with id 632c2636db39c267a803f1ed not found'
 
 
@@ -161,7 +161,7 @@ async def test_update_student(mongo_mock: Any) -> None:
     }
     response = client.put('/student/6329cd902186c0e6c5fa5eef', data=dumps(updated_student_data))
     assert response.status_code == 200
-    json_response = loads(response.json())
+    json_response = response.json()
     assert (
         json_response['message'] == 'Student with id 6329cd902186c0e6c5fa5eef updated successfully'
     )
@@ -179,7 +179,7 @@ async def test_update_student_not_found(mongo_mock: Any) -> None:
     }
     response = client.put('/student/632c2636db39c267a803f1ed', data=dumps(updated_student_data))
     assert response.status_code == 404
-    error = loads(response.json())
+    error = response.json()
     assert error['message'][0] == 'Student with id 632c2636db39c267a803f1ed not found'
 
 
@@ -189,7 +189,7 @@ async def test_delete_employee(mongo_mock: Any) -> None:
 
     response = client.delete('/student/6329cd902186c0e6c5fa5eef')
     assert response.status_code == 200
-    json_response = loads(response.json())
+    json_response = response.json()
     assert (
         json_response['message'] == 'Student with id 6329cd902186c0e6c5fa5eef deleted successfully'
     )
@@ -201,5 +201,5 @@ async def test_delete_employee_not_found(mongo_mock: Any) -> None:
 
     response = client.delete('/student/632c2636db39c267a803f1ed')
     assert response.status_code == 404
-    error = loads(response.json())
+    error = response.json()
     assert error['message'][0] == 'Student with id 632c2636db39c267a803f1ed not found'

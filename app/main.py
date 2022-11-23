@@ -10,7 +10,7 @@ from app.router import api_router
 
 from app.services.populate_service import students_bulkwrite
 
-from app.utils.json_encoder import JSONEncoder
+from app.utils.json_encoder import json_encoder
 
 DESCRIPTION = '''
 A simple template for python projects using FastAPI and MongoDB
@@ -45,7 +45,7 @@ async def validation_exception_handler(
     for error in exc_json:
         response['message'].append(error['loc'][-1] + f": {error['msg']}")
 
-    return JSONResponse(content=JSONEncoder().encode(response), status_code=422)
+    return JSONResponse(content=json_encoder(response), status_code=422)
 
 
 @app.on_event("startup")

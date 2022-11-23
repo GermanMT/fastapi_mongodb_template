@@ -15,5 +15,6 @@ class JSONencoder(JSONEncoder):
             return str(o)
         return JSONEncoder.default(self, o)
 
-def json_encoder(object: dict) -> Any:
-    return loads(JSONencoder().encode(object))
+
+def json_encoder(raw_response: dict[str, Any]) -> Any:
+    return loads(JSONencoder().encode(raw_response))
