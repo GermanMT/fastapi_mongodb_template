@@ -16,7 +16,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements_dev.txt
-          pip install prospector[with_everything]==1.7.7
+          pip install prospector[with_everything]==1.8.3
       - name: Analysing the code with prospector
         run: |
           prospector
@@ -33,7 +33,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements_mypy.txt
-          pip install mypy==0.982
+          pip install mypy==0.991
       - name: Running static types with mypy
         run: |
           mypy .
