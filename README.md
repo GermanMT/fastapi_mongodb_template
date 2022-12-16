@@ -1,10 +1,10 @@
 # FastAPI and MongoDB Template
 
+[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/germanmt/fastapi_mongodb_template?label=dockerhub&logo=docker&sort=semver)](https://hub.docker.com/repository/docker/germanmt/fastapi_mongodb_template) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/GermanMT/fastapi_mongodb_template?color=green&logo=github)](https://github.com/GermanMT/fastapi_mongodb_template/releases)
+
 ## Documentation
 
 Related documentation and links about this template.
-
-[DockerHub](https://hub.docker.com/repository/docker/germanmt/fastapi_mongodb_template)
 
 [FastAPI](https://fastapi.tiangolo.com/)
 
