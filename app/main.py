@@ -1,6 +1,6 @@
 from json import loads
 
-from fastapi import FastAPI, Request, __version__
+from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError, ValidationError
 
 from starlette.middleware.cors import CORSMiddleware
@@ -29,7 +29,7 @@ Related documentation and links about this template.
 app = FastAPI(
     title="FastAPI/MongoDB Template",
     description=DESCRIPTION,
-    version="1.0.0",
+    version="1.3.0",
     contact={
         "name": "Antonio Germán Márquez Trujillo",
         "url": "https://github.com/GermanMT",

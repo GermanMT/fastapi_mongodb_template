@@ -1,6 +1,6 @@
-from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
-
 from functools import lru_cache
+
+from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
 
 from app.config import settings
 

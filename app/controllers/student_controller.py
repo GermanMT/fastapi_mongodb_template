@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, status, HTTPException
+from fastapi import APIRouter, status, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
@@ -18,7 +18,7 @@ router = APIRouter()
 
 
 @router.post('/student', response_description='Create student', response_model=StudentModel)
-async def create_student_data(student: StudentModel = Body(...)) -> JSONResponse:
+async def create_student_data(student: StudentModel) -> JSONResponse:
     student_json = jsonable_encoder(student)
     try:
         new_student = await create_student(student_json)
@@ -56,7 +56,7 @@ async def read_student_data(student_id: str) -> JSONResponse:
     response_description='Update student',
     response_model=dict[str, str]
 )
-async def update_student_data(student_id: str, student: StudentModel = Body(...)) -> JSONResponse:
+async def update_student_data(student_id: str, student: StudentModel) -> JSONResponse:
     student_json = jsonable_encoder(student)
     try:
         await update_student(student_id, student_json)

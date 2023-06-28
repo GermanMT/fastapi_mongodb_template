@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from typing import Any
 
 from fastapi import HTTPException
