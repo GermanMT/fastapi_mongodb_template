@@ -1,5 +1,5 @@
 pytest==7.2.0
-pytest-asyncio==0.20.3
-mongomock-motor==0.0.13
-prospector[with_everything]==1.8.3
-mypy==0.991
+pytest-asyncio==0.21.0
+mongomock-motor==0.0.20
+prospector[with_everything]==1.10.2
+mypy==1.4.1

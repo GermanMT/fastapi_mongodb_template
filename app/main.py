@@ -1,6 +1,6 @@
 from json import loads
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, __version__
 from fastapi.exceptions import RequestValidationError, ValidationError
 
 from starlette.middleware.cors import CORSMiddleware
@@ -17,9 +17,13 @@ A simple template for python projects using FastAPI and MongoDB
 
 ## Documentation
 
+Related documentation and links about this template.
+
 [FastAPI](https://fastapi.tiangolo.com/)
 
 [Pydantic](https://pydantic-docs.helpmanual.io/)
+
+[Motor](https://motor.readthedocs.io/en/stable/): Asynchronous Python driver for MongoDB
 '''
 
 app = FastAPI(
