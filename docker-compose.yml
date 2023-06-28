@@ -5,23 +5,31 @@ services:
     container_name: fastapi_mongodb_backend
     build: .
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     ports:
       - '8000:8000'
     networks:
       - fastapi_mongodb
 
   database:
+    env_file: .env
     container_name: mongodb
-    image: mongo:6.0.2
+    image: mongo:6.0.5
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
     ports:
       - '27017:27017'
     networks:
       - fastapi_mongodb
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 3s
 
 networks:
   fastapi_mongodb:
     driver: bridge
-
-volumes:
-  data:
