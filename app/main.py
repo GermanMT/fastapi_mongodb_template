@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -6,6 +6,7 @@ from fastapi.exception_handlers import (
 )
 from starlette.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException
+from starlette.responses import Response
 from app.router import api_router
 from app.services.populate_service import students_bulkwrite
 
@@ -16,7 +17,7 @@ A simple template for python projects using FastAPI and MongoDB
 
 Related documentation and links about this template.
 
-[FastAPI](https://fastapi.tiangolo.com/): A modern, fast (high-performance), web framework for building APIs with Python
+[FastAPI](https://fastapi.tiangolo.com/): Modern web framework for building APIs with Python.
 
 [Pydantic](https://pydantic-docs.helpmanual.io/): Data validation library for Python.
 
@@ -36,12 +37,12 @@ app = FastAPI(
 
 
 @app.exception_handler(HTTPException)
-async def custom_http_exception_handler(request, exc):
+async def custom_http_exception_handler(request: Request, exc: HTTPException) -> Response:
     return await http_exception_handler(request, exc)
 
 
 @app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request, exc):
+async def validation_exception_handler(request: Request, exc: RequestValidationError) -> Response:
     return await request_validation_exception_handler(request, exc)
 
 
