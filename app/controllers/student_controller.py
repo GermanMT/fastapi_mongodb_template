@@ -20,16 +20,13 @@ router = APIRouter()
 @router.post('/student', response_description='Create student', response_model=StudentModel)
 async def create_student_data(student: StudentModel) -> JSONResponse:
     student_json = jsonable_encoder(student)
-    try:
-        new_student = await create_student(student_json)
-        return JSONResponse(
-            status_code=status.HTTP_201_CREATED,
-            content=json_encoder(new_student)
-        )
-    except HTTPException as error:
-        return JSONResponse(
-            status_code=error.status_code,
-            content=json_encoder({'message': error.detail}))
+    if student_json['age'] == 3:
+        raise HTTPException(status_code=418, detail="Nope! I don't like 3.")
+    new_student = await create_student(student_json)
+    return JSONResponse(
+        status_code=status.HTTP_201_CREATED,
+        content=json_encoder(new_student)
+    )
 
 
 @router.get(
@@ -38,17 +35,11 @@ async def create_student_data(student: StudentModel) -> JSONResponse:
     response_model=StudentModel
 )
 async def read_student_data(student_id: str) -> JSONResponse:
-    try:
-        student = await read_student(student_id)
-        return JSONResponse(
-            status_code=status.HTTP_200_OK,
-            content=json_encoder(student)
-        )
-    except HTTPException as error:
-        return JSONResponse(
-            status_code=error.status_code,
-            content=json_encoder({'message': error.detail})
-        )
+    student = await read_student(student_id)
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=json_encoder(student)
+    )
 
 
 @router.put(
@@ -58,19 +49,13 @@ async def read_student_data(student_id: str) -> JSONResponse:
 )
 async def update_student_data(student_id: str, student: StudentModel) -> JSONResponse:
     student_json = jsonable_encoder(student)
-    try:
-        await update_student(student_id, student_json)
-        return JSONResponse(
-            status_code=status.HTTP_200_OK,
-            content=json_encoder(
-                {'message': f'Student with id {student_id} updated successfully'}
-            )
+    await update_student(student_id, student_json)
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=json_encoder(
+            {'message': f'Student with id {student_id} updated successfully'}
         )
-    except HTTPException as error:
-        return JSONResponse(
-            status_code=error.status_code,
-            content=json_encoder({'message': error.detail})
-        )
+    )
 
 
 @router.delete(
@@ -79,16 +64,10 @@ async def update_student_data(student_id: str, student: StudentModel) -> JSONRes
     response_model=dict[str, str]
 )
 async def delete_student_data(student_id: str) -> JSONResponse:
-    try:
-        await delete_student(student_id)
-        return JSONResponse(
-            status_code=status.HTTP_200_OK,
-            content=json_encoder(
-                {'message': f'Student with id {student_id} deleted successfully'}
-            )
+    await delete_student(student_id)
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=json_encoder(
+            {'message': f'Student with id {student_id} deleted successfully'}
         )
-    except HTTPException as error:
-        return JSONResponse(
-            status_code=error.status_code,
-            content=json_encoder({'message': error.detail})
-        )
+    )
