@@ -1,9 +1,12 @@
-version: '3'
-
 services:
   backend:
     container_name: fastapi_mongodb_backend
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/backend
+      - .env:/.env
     depends_on:
       database:
         condition: service_healthy

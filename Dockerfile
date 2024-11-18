@@ -1,15 +1,13 @@
-FROM python:3.11
+FROM python:3.12.3
 
-WORKDIR /fastapi_mongodb_template
+WORKDIR /backend
 
-COPY ./requirements.txt /fastapi_mongodb_template/requirements.txt
+COPY requirements.txt ./
 
-RUN python -m pip install --upgrade pip
+RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-COPY ./ /fastapi_mongodb_template/
-
 EXPOSE 8000
 
-CMD uvicorn app.main:app --host 0.0.0.0 --port 8000
+CMD uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --reload-dir /backend/app
