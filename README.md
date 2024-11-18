@@ -1,6 +1,6 @@
 # FastAPI and MongoDB Template
 
-[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/germanmt/fastapi_mongodb_template?label=dockerhub&logo=docker&sort=semver)](https://hub.docker.com/repository/docker/germanmt/fastapi_mongodb_template) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/GermanMT/fastapi_mongodb_template?color=green&logo=github)](https://github.com/GermanMT/fastapi_mongodb_template/releases) [![GitHub](https://img.shields.io/github/license/GermanMT/fastapi_mongodb_template?logo=gnu)](https://github.com/GermanMT/fastapi_mongodb_template/blob/main/LICENSE.md)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/GermanMT/fastapi_mongodb_template?color=green&logo=github)](https://github.com/GermanMT/fastapi_mongodb_template/releases) [![GitHub](https://img.shields.io/github/license/GermanMT/fastapi_mongodb_template?logo=gnu)](https://github.com/GermanMT/fastapi_mongodb_template/blob/main/LICENSE.md)
 
 ## Documentation
 
@@ -34,4 +34,4 @@ Related documentation and links about this template.
 
 ## Analyse code
 
-You can analyse your code best practices after install develop requirements with commands 'mypy app' and 'prospector' in the root folder of the project.
+You can analyse your code best practices after install develop requirements with command 'ruff check' in the root folder of the project.
