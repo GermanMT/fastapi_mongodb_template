@@ -134,3 +134,6 @@ dmypy.json
 
 # Ruff cache
 .ruff_cache
+
+# Logger
+errors.log

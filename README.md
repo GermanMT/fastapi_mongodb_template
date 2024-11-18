@@ -6,11 +6,11 @@
 
 Related documentation and links about this template.
 
-[FastAPI](https://fastapi.tiangolo.com/)
+[FastAPI](https://fastapi.tiangolo.com/): Modern web framework for building APIs with Python.
 
-[Pydantic](https://pydantic-docs.helpmanual.io/)
+[Pydantic](https://pydantic-docs.helpmanual.io/): Data validation library for Python.
 
-[Motor](https://motor.readthedocs.io/en/stable/): Asynchronous Python driver for MongoDB
+[Motor](https://motor.readthedocs.io/en/stable/): Asynchronous Python driver for MongoDB.
 
 ## Deployment with docker
 

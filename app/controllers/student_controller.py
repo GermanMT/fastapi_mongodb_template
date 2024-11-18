@@ -17,8 +17,6 @@ router = APIRouter()
 @router.post('/student', response_description='Create student', response_model=StudentModel)
 async def create_student_data(student: StudentModel) -> JSONResponse:
     student_json = jsonable_encoder(student)
-    if student_json['age'] == 3:
-        raise HTTPException(status_code=418, detail="Nope! I don't like 3.")
     new_student = await create_student(student_json)
     return JSONResponse(
         status_code=status.HTTP_201_CREATED,
