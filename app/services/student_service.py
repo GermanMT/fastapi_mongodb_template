@@ -1,9 +1,8 @@
 # mypy: ignore-errors
 from typing import Any
 
-from fastapi import HTTPException
-
 from bson import ObjectId
+from fastapi import HTTPException
 
 from app.services.db.database import get_collection
 

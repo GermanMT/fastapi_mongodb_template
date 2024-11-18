@@ -1,10 +1,8 @@
 from typing import Any
 
 import pytest
-
-from mongomock_motor import AsyncMongoMockClient
-
 from bson import ObjectId
+from mongomock_motor import AsyncMongoMockClient
 
 
 @pytest.fixture()

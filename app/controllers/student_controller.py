@@ -1,18 +1,15 @@
-from fastapi import APIRouter, status, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi import APIRouter, HTTPException, status
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 
 from app.models.student_model import StudentModel
-
 from app.services.student_service import (
-    read_student,
     create_student,
+    delete_student,
+    read_student,
     update_student,
-    delete_student
 )
-
 from app.utils.json_encoder import json_encoder
-
 
 router = APIRouter()
 

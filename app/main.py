@@ -1,12 +1,13 @@
 from fastapi import FastAPI, Request
-from fastapi.exceptions import RequestValidationError
 from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
 )
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException
+from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import Response
+
 from app.router import api_router
 from app.services.populate_service import students_bulkwrite
 

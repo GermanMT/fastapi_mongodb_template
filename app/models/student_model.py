@@ -1,4 +1,5 @@
 from re import match
+from typing import ClassVar
 
 from pydantic import BaseModel, Field, validator
 
@@ -30,7 +31,7 @@ class StudentModel(BaseModel):
     class Config:
         populate_by_name = True
         arbitrary_types_allowed = True
-        json_schema_extra = {
+        json_schema_extra: ClassVar = {
             'example': {
                 'name': 'John',
                 'surname': 'Doe',
