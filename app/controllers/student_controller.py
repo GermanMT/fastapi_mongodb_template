@@ -14,7 +14,7 @@ from app.utils import json_encoder
 router = APIRouter()
 
 
-@router.post('/student', response_description='Create student', response_model=StudentModel)
+@router.post("/student", response_description="Create student", response_model=StudentModel)
 async def create_student_data(student: StudentModel) -> JSONResponse:
     student_json = jsonable_encoder(student)
     new_student = await create_student(student_json)
@@ -25,8 +25,8 @@ async def create_student_data(student: StudentModel) -> JSONResponse:
 
 
 @router.get(
-    '/student/{student_id}',
-    response_description='Read student',
+    "/student/{student_id}",
+    response_description="Read student",
     response_model=StudentModel
 )
 async def read_student_data(student_id: str) -> JSONResponse:
@@ -38,8 +38,8 @@ async def read_student_data(student_id: str) -> JSONResponse:
 
 
 @router.put(
-    '/student/{student_id}',
-    response_description='Update student',
+    "/student/{student_id}",
+    response_description="Update student",
     response_model=dict[str, str]
 )
 async def update_student_data(student_id: str, student: StudentModel) -> JSONResponse:
@@ -48,14 +48,14 @@ async def update_student_data(student_id: str, student: StudentModel) -> JSONRes
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content=json_encoder(
-            {'message': f'Student with id {student_id} updated successfully'}
+            {"message": f"Student with id {student_id} updated successfully"}
         )
     )
 
 
 @router.delete(
-    '/student/{student_id}',
-    response_description='Delete student',
+    "/student/{student_id}",
+    response_description="Delete student",
     response_model=dict[str, str]
 )
 async def delete_student_data(student_id: str) -> JSONResponse:
@@ -63,6 +63,6 @@ async def delete_student_data(student_id: str) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content=json_encoder(
-            {'message': f'Student with id {student_id} deleted successfully'}
+            {"message": f"Student with id {student_id} deleted successfully"}
         )
     )

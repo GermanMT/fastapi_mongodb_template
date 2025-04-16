@@ -15,7 +15,7 @@ from app.middleware import log_request_middleware
 from app.router import api_router
 from app.services import students_bulkwrite
 
-DESCRIPTION = '''
+DESCRIPTION = """
 A simple template for python projects using FastAPI and MongoDB
 
 ## Documentation
@@ -27,7 +27,7 @@ Related documentation and links about this template.
 [Pydantic](https://pydantic-docs.helpmanual.io/): Data validation library for Python.
 
 [Motor](https://motor.readthedocs.io/en/stable/): Asynchronous Python driver for MongoDB.
-'''
+"""
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> Any:
@@ -56,8 +56,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=['*'],
-    allow_headers=['*']
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 

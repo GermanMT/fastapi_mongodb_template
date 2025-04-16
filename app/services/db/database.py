@@ -9,7 +9,7 @@ from app.config import settings
 def get_collection(collection_name: str) -> AsyncIOMotorCollection:
     client = AsyncIOMotorClient(settings.DB_URI)
     match collection_name:
-        case 'students':
-            return client.students.get_collection('students')
+        case "students":
+            return client.students.get_collection("students")
         case _:
-            raise Exception('Is not a valid collection of the database!')
+            raise Exception("Is not a valid collection of the database!")

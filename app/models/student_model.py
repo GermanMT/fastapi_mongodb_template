@@ -1,7 +1,6 @@
 from re import match
-from typing import ClassVar
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator, ConfigDict
 
 
 class StudentModel(BaseModel):
@@ -20,22 +19,12 @@ class StudentModel(BaseModel):
         gt=0,
         description="The age must be greater than zero"
     )
-    phone: str | None = Field(...)
+    phone: str | None = None
 
-    @validator("phone")
-    def phone_validation(cls, phone: str) -> ValueError | str:
-        if not match(r'[\d]{3} [\d]{3} [\d]{3}', phone):
+    @field_validator("phone")
+    def phone_validation(cls, phone: str) -> str:
+        if not match(r"[\d]{3} [\d]{3} [\d]{3}", phone):
             raise ValueError(f"The phone {phone} is not correct")
         return phone
 
-    class Config:
-        populate_by_name = True
-        arbitrary_types_allowed = True
-        json_schema_extra: ClassVar = {
-            'example': {
-                'name': 'John',
-                'surname': 'Doe',
-                'age': 24,
-                'phone': '678 340 253'
-            }
-        }
+    model_config = ConfigDict(from_attributes=True)
