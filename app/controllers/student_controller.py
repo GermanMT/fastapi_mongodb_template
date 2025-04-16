@@ -2,14 +2,14 @@ from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-from app.models.student_model import StudentModel
-from app.services.student_service import (
+from app.models import StudentModel
+from app.services import (
     create_student,
     delete_student,
     read_student,
     update_student,
 )
-from app.utils.json_encoder import json_encoder
+from app.utils import json_encoder
 
 router = APIRouter()
 

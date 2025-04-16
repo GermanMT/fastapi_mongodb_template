@@ -4,7 +4,7 @@ from typing import Any
 from bson import ObjectId
 from fastapi import HTTPException
 
-from app.services.db.database import get_collection
+from app.services.db import get_collection
 
 
 async def create_student(student_data: dict[str, Any]) -> dict[str, Any]:

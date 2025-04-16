@@ -13,7 +13,7 @@ from app.exception_handlers import (
 )
 from app.middleware import log_request_middleware
 from app.router import api_router
-from app.services.populate_service import students_bulkwrite
+from app.services import students_bulkwrite
 
 DESCRIPTION = '''
 A simple template for python projects using FastAPI and MongoDB
@@ -54,7 +54,7 @@ app = FastAPI(
 app.middleware("http")(log_request_middleware)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*']

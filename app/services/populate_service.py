@@ -1,6 +1,6 @@
 from json import load
 
-from app.services.db.database import get_collection
+from app.services.db import get_collection
 
 
 async def students_bulkwrite() -> None:
