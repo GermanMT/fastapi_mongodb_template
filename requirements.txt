@@ -1,7 +1,6 @@
-fastapi==0.115.5
-uvicorn==0.32.0
+fastapi==0.115.12
+uvicorn==0.34.1
 email-validator==2.2.0
-pydantic-settings==2.6.1
-motor==3.6.0
-python-dotenv==1.0.1
-requests==2.32.3
+pydantic-settings==2.8.1
+motor==3.7.0
+python-dotenv==1.1.0
