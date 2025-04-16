@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI) -> Any:
 app = FastAPI(
     title="FastAPI/MongoDB Template",
     description=DESCRIPTION,
-    version="1.5.0",
+    version="1.6.0",
     contact={
         "name": "Antonio Germán Márquez Trujillo",
         "url": "https://github.com/GermanMT",
